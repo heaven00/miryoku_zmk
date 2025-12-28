@@ -9,7 +9,6 @@ jobs:
     secrets: inherit
     with:
       board: '["eyelash_sofle"]'
-      shield: '["nice_view"]'
       custom_config: '["#define MIRYOKU_KLUDGE_SOFT_OFF"]'
       kconfig: '["CONFIG_ZMK_PM_SOFT_OFF=y\nCONFIG_ZMK_POINTING=y\nCONFIG_ZMK_SLEEP=y\nCONFIG_ZMK_IDLE_SLEEP_TIMEOUT=1600000\nCONFIG_ZMK_BLE_EXPERIMENTAL_CONN=y\nCONFIG_ZMK_BLE_PASSKEY_ENTRY=y"]'
       modules: '["zmkfirmware/zmk/main a741725193/zmk-sofle/main"]'
