@@ -320,11 +320,8 @@ jobs:
           echo "::endgroup::"
 
           echo "::group::kconfig-preparation"
-          # Check if build directory exists and has proper structure
-          if [ ! -d "app/build" ]; then
-            echo "Build directory doesn't exist, creating it..."
-            mkdir -p "app/build"
-          fi
+          # Create build directory structure if it doesn't exist
+          mkdir -p "app/build/Kconfig/soc"
 
           # Check for required Kconfig files
           echo "Checking for required Kconfig files..."
@@ -332,18 +329,31 @@ jobs:
             echo "Kconfig.defconfig not found in build directory"
             echo "Attempting to generate it..."
 
-            # Try to generate the missing Kconfig files
+            # Try to generate the missing Kconfig files using the proper kconfig.py syntax
             if [ -f "zephyr/Kconfig" ]; then
               echo "Found zephyr Kconfig, trying to process it..."
               python3 zephyr/scripts/kconfig/kconfig.py \
-                --output=app/build/Kconfig \
-                --defconfig=app/build/Kconfig/soc/Kconfig.defconfig \
-                --zephyr=zephyr/Kconfig \
+                zephyr/Kconfig \
+                app/build/Kconfig/soc/Kconfig.defconfig \
+                app/build/Kconfig/soc/Kconfig.defconfig.h \
+                app/build/Kconfig/soc/Kconfig.list \
+                app/build/Kconfig/soc/Kconfig.defconfig \
+                --zephyr-base=zephyr \
                 --applib=app \
                 --board=${{ matrix.board }}
+
+              # Verify the file was created
+              if [ ! -f "app/build/Kconfig/soc/Kconfig.defconfig" ]; then
+                echo "ERROR: Failed to generate Kconfig.defconfig"
+                exit 1
+              fi
+              echo "Successfully generated Kconfig.defconfig"
             else
               echo "Could not find zephyr/Kconfig"
+              exit 1
             fi
+          else
+            echo "Kconfig.defconfig already exists"
           fi
 
           # List the contents of the Kconfig directory for debugging
