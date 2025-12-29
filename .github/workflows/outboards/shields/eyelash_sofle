@@ -3,5 +3,5 @@
 
 outboard_repository=a741725193/zmk-sofle
 outboard_ref=main
-outboard_from=config
+outboard_from=zephyr
 outboard_to=boards/shields/eyelash_sofle
