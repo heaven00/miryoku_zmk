@@ -4,7 +4,7 @@
 name: "Build eyelash_sofle"
 on: workflow_dispatch
 jobs:
-  build-left:
+  build:
     uses: ./.github/workflows/main.yml
     secrets: inherit
     with:
@@ -14,13 +14,13 @@ jobs:
       kconfig: '["CONFIG_ZMK_STUDIO=y\nCONFIG_ZMK_STUDIO_LOCKING=n\nCONFIG_ZMK_MOUSE=n\nCONFIG_ZMK_POINTING=y"]'
       alphas: '["qwerty"]'
       nav: '["vi"]'
-  build-right:
-    uses: ./.github/workflows/main.yml
-    secrets: inherit
-    with:
-      board: '["eyelash_sofle"]'
-      shield: '["nice_view"]'
-      modules: '["a741725193/zmk-sofle/main"]'
-      kconfig: '["CONFIG_ZMK_MOUSE=n\nCONFIG_ZMK_POINTING=y"]'
-      alphas: '["qwerty"]'
-      nav: '["vi"]'
+  # build-right:
+  #   uses: ./.github/workflows/main.yml
+  #   secrets: inherit
+  #   with:
+  #     board: '["eyelash_sofle"]'
+  #     shield: '["nice_view"]'
+  #     modules: '["a741725193/zmk-sofle/main"]'
+  #     kconfig: '["CONFIG_ZMK_MOUSE=n\nCONFIG_ZMK_POINTING=y"]'
+  #     alphas: '["qwerty"]'
+  #     nav: '["vi"]'
