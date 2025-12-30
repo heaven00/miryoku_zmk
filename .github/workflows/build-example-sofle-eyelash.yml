@@ -10,7 +10,6 @@ jobs:
     with:
       board: '["eyelash_sofle_left"]'
       shield: '["nice_view"]'
-      snippet: '["studio-rpc-usb-uart"]'
       modules: '["a741725193/zmk-sofle/main"]'
       kconfig: '["CONFIG_ZMK_STUDIO=y\nCONFIG_ZMK_STUDIO_LOCKING=n\nCONFIG_ZMK_MOUSE=n\nCONFIG_ZMK_POINTING=y"]'
       alphas: '["qwerty"]'
